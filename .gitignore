@@ -12,3 +12,4 @@ mlruns
 
 !model/.gitkeep
 !data/*/.gitkeep
+!config/.gitkeep
