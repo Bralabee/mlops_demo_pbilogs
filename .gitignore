@@ -1,0 +1,14 @@
+model/*
+data/*/*
+config/*/*
+__pycache__
+.ipynb_checkpoints
+*.ipynb
+.env
+*_cache
+venv
+outputs
+mlruns
+
+!model/.gitkeep
+!data/*/.gitkeep
