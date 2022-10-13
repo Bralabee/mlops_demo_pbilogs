@@ -1,6 +1,6 @@
 model/*
 data/*/*
-config/*/*
+config/*
 __pycache__
 .ipynb_checkpoints
 *.ipynb
