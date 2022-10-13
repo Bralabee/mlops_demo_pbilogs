@@ -1,0 +1,4 @@
+prefect~=2.5.0
+omegaconf~=2.2.3
+pandas~=1.4.3
+

@@ -1,0 +1,35 @@
+data:
+  raw:
+    name: logs
+    path: 'C:\get_activity_log/*.csv'
+    type: csv
+    delimiter: ','
+    header: true
+    encoding: UTF-8
+    comment: '#'
+    skipinitialspace: true
+    skiprows: 0
+    keep_default_na: true
+
+  rawdailyconcatinated:
+    name: all_df
+    path: 'C:\Users\sibitoye\Documents\PBI_AuditLog_Final_Python_Output\all_df.csv'
+
+  processed:
+    name: get_activity_log_processed
+    path: 'C:\Users\sibitoye\Documents\PBI_AuditLog_Final_Python_Output\get_activity_log_processed'
+    type: csv
+    delimiter: ','
+    encoding: UTF-8
+
+  connection:
+    server: 'localhost'
+    database: 'PBI_AuditLog'
+    driver: 'SQL Server'
+    trusted_connection: 'yes'
+    autocommit: false
+    user: root
+    password: secrete
+
+
+
