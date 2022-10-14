@@ -14,7 +14,7 @@ from helper import load_config
 def load_raw_files(config: DictConfig):
     all_df = pd.concat(
         [pd.read_csv(logs, low_memory=False, header=config.data.raw.skiprows, sep=config.data.raw.delimiter,
-                     encoding=config.data.raw.encoding)
+                     encoding=config.data.rawdailyconcatinated.encoding)
          for logs in glob.glob(config.data.raw.path)])
 
     return all_df

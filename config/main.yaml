@@ -14,6 +14,21 @@ data:
   rawdailyconcatinated:
     name: all_df
     path: 'C:\Users\sibitoye\Documents\PBI_AuditLog_Final_Python_Output\all_df.csv'
+    low_memory: false
+    skiprows: 0
+    delimiter: ','
+    encoding: UTF-8
+    header: true
+    header_row: 1
+
+  var_apiCalls_filtered:
+    name: var_apiCalls_filtered
+    service_account: 'SA_DAL_PowerBI@hs2.org.uk'
+    operation: 'ExportActivityEvents'
+
+  lower_case_columns:
+    col1: 'UserId'
+    col2: 'ReportName'
 
   processed:
     name: get_activity_log_processed
@@ -30,6 +45,45 @@ data:
     autocommit: false
     user: root
     password: secrete
+
+  n_estimators: 35
+
+  raw_cols:
+    - Id
+    - CreationTime
+    - CreationTimeUTC
+    - RecordType
+    - Operation
+    - OrganizationId
+    - UserType
+    - UserKey
+    - Workload
+    - UserId
+    - ClientIP
+    - UserAgent
+    - Activity
+    - ItemName
+    - WorkSpaceName
+    - DashboardName
+    - DatasetName
+    - ReportName
+    - WorkspaceId
+    - ObjectId
+    - DashboardId
+    - DatasetId
+    - ReportId
+    - OrgAppPermission
+    - CapacityId
+    - CapacityName
+    - AppName
+    - IsSuccess
+    - ReportType
+    - RequestId
+    - ActivityId
+    - AppReportId
+    - DistributionMethod
+    - ConsumptionMethod
+    - RetrieveDate
 
 
 
