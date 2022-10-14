@@ -1,10 +1,10 @@
-# import python functions to build pipeline
-# from first_ingestion_point import start_pipeline_pbia, \
-#     format_datatype_dates, add_month_year_cols_users, api_calls_filtered_out, lower_case_cols
 
-from process_data_module import load_concat_file, start_pipeline_pbia,  \
+
+from process_data_module import load_concat_file, start_pipeline_pbia, \
     format_datatype_dates, api_calls_filtered_out, \
     lower_case_cols, log_step_pbia  # , save_data
+
+from process_data_module import add_month_year_cols_users
 
 # import config from helper.py
 from helper import load_config
@@ -35,7 +35,19 @@ def start_transformations_pbia(config, df) -> pd.DataFrame:
         .pipe(lower_case_cols, 'UserId', 'ReportName')
         .pipe(api_calls_filtered_out, service_account, operation)
         .pipe(format_datatype_dates, config)
-        #.pipe(add_month_year_cols_users, 'CreationTime')
+        # .pipe(add_month_year_cols_users, 'CreationTime')
+    )
+
+
+@log_step_pbia
+@task(name="Start Second Transformation Pipeline")
+def start_transformations_pbia_2(df) -> pd.DataFrame:
+    return (
+        df.pipe(add_month_year_cols_users, 'CreationTime')
+        # .pipe(lower_case_cols, 'UserId', 'ReportName')
+        # .pipe(api_calls_filtered_out, service_account, operation)
+        # .pipe(format_datatype_dates, config)
+        # .pipe(add_month_year_cols_users, 'CreationTime')
     )
 
 
@@ -43,9 +55,10 @@ def start_transformations_pbia(config, df) -> pd.DataFrame:
 def pbia_flow():
     config = load_config()
     df = load_concat_file(config)
-    start_transformations_pbia(config, df)
+    df = start_transformations_pbia(config, df)
+    start_transformations_pbia_2(df)
 
-    #start_transformations_pbia(config, df)
+    # start_transformations_pbia(config, df)
 
     # save_data(df, config)
 

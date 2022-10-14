@@ -132,12 +132,12 @@ def format_datatype_dates(df: pd.DataFrame, config: DictConfig) -> pd.DataFrame:
     return df
 
 
-# @log_step_pbia
-# def add_month_year_cols_users(df, date_col) -> pd.DataFrame:
-#     df['createdDate_year'] = df[date_col].dt.year
-#     df['createdDate_month'] = df[date_col].dt.month
-#     df['createdDate_day'] = df[date_col].dt.day
-#     return df
+@log_step_pbia
+def add_month_year_cols_users(df, date_col) -> pd.DataFrame:
+    df['createdDate_year'] = df[date_col].dt.year
+    df['createdDate_month'] = df[date_col].dt.month
+    df['createdDate_day'] = df[date_col].dt.day
+    return df
 #
 # def add_month_year_cols_users(df: pd.DataFrame) -> pd.DataFrame:
 #     colzname = df.CreationTime
