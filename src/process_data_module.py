@@ -53,7 +53,7 @@ def load_concat_file(config: DictConfig) -> pd.DataFrame:
 
 
 @log_step_pbia
-#@task(name="Start Pipeline Copy Data")
+# @task(name="Start Pipeline Copy Data")
 def start_pipeline_pbia(df: pd.DataFrame) -> pd.DataFrame:
     """
         Args:
@@ -72,7 +72,7 @@ def start_pipeline_pbia(df: pd.DataFrame) -> pd.DataFrame:
 
 
 @log_step_pbia
-#@task(name="Filter out API calls")
+# @task(name="Filter out API calls")
 def api_calls_filtered_out(df, the_service_account, the_operation) -> pd.DataFrame:
     """
         Args: data (dataframe), service_account (string), operation (string)
@@ -87,7 +87,7 @@ def api_calls_filtered_out(df, the_service_account, the_operation) -> pd.DataFra
 
 
 @log_step_pbia
-#@task(name="Filter out blank workspace and report")
+# @task(name="Filter out blank workspace and report")
 def lower_case_cols(df, col1, col2) -> pd.DataFrame:
     """
     This function converts two string columns to lower case
@@ -104,18 +104,8 @@ def lower_case_cols(df, col1, col2) -> pd.DataFrame:
     return df
 
 
-# # for columns in df.columns contains 'Date' or 'Time' convert them to datetime format
-# @log_step_pbia
-# @task(name="Convert Date and Time columns to datetime format")
-# def format_datatype_dates(df: pd.DataFrame, config: DictConfig) -> pd.DataFrame:
-#     use_cols = config.data.raw_cols
-#     for col in use_cols:
-#         if 'Date' in col or 'Time' in col:
-#             df[col] = pd.to_datetime(df[col], format='%Y-%M-%d', infer_datetime_format=True)
-#     return df
-
 @log_step_pbia
-#@task(name="Convert Date and Time columns to datetime format")
+# @task(name="Convert Date and Time columns to datetime format")
 def format_datatype_dates(df: pd.DataFrame, config: DictConfig) -> pd.DataFrame:
     """
      This function gets all columns with name containing time.
@@ -138,13 +128,6 @@ def add_month_year_cols_users(df, date_col) -> pd.DataFrame:
     df['createdDate_month'] = df[date_col].dt.month
     df['createdDate_day'] = df[date_col].dt.day
     return df
-#
-# def add_month_year_cols_users(df: pd.DataFrame) -> pd.DataFrame:
-#     colzname = df.CreationTime
-#
-#     return df.assign(createdDate_month=lambda d: pd.DatetimeIndex(colzname).month,
-#                      createdDate_year=lambda d: pd.DatetimeIndex(colzname).year,
-#                      createdDate_day=lambda d: pd.DatetimeIndex(colzname).day)
 
 
 # @log_step_pbia
@@ -157,9 +140,10 @@ def add_month_year_cols_users(df, date_col) -> pd.DataFrame:
 #     """
 #     return df.to_csv(path, index=False)
 
-'_____________________________________________________________________________________'
-'------------------- Power BI Activity Log Script  SECTION 2 -------------------------'
-'-------------------------------------------------------------------------------------'
+# _____________________________________________________________________________________#
+#
+#                            Power BI Activity Log Script  SECTION 2
+# -------------------------------------------------------------------------------------#
 
 
 @log_step_pbia

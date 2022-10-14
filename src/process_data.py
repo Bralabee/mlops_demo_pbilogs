@@ -1,30 +1,28 @@
-
-
-from process_data_module import load_concat_file, start_pipeline_pbia, \
-    format_datatype_dates, api_calls_filtered_out, \
-    lower_case_cols, log_step_pbia  # , save_data
-
-from process_data_module import add_month_year_cols_users
-
+# useful libraries
+import glob
+import pandas as pd
+import datetime as dt
+from functools import wraps
+from prefect import flow, task
 # import config from helper.py
 from helper import load_config
-
-import pandas as pd
 from omegaconf import DictConfig
-from prefect import flow, task
-from sklearn.model_selection import train_test_split
 from sqlalchemy import create_engine
-from functools import wraps
-
-import datetime as dt
-import glob
 from datetime import datetime, timedelta, timezone
+from sklearn.model_selection import train_test_split
 
 # variables for the 4th transformation node i.e. api_calls_filtered_out
 service_account = 'SA_DAL_PowerBI@hs2.org.uk'
 operation = 'ExportActivityEvents'
 today = datetime.today()
 now = datetime.now(timezone.utc)
+
+# nodes for the first ingestion point
+from process_data_module import load_concat_file, start_pipeline_pbia, format_datatype_dates, api_calls_filtered_out, \
+    lower_case_cols, log_step_pbia
+
+# nodes for the second ingestion point
+from process_data_module import add_month_year_cols_users
 
 
 @log_step_pbia
